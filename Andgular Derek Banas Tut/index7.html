@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="app7">
+  <head>
+    <link rel="stylesheet" type="text/css" href="css\bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css\custom.css" />
+    <script type="text/javascript" src="js\jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="js\bootstrap.js"></script>
+    <script type="text/javascript" src="js\angular.min.js"></script>
+    <script type="text/javascript" src="js\exam7.js"></script>
+  </head>
+  <style>
+    table{
+      width: 400px;
+      text-align: left;
+      border: 2px solid black;
+      padding 10px;
+    }
+    input.ng-dirty.ng-invalid{
+      border.color: red;
+    }
+  </style>
+  <body>
+    <div ng-controller="mainCtrl as parent">
+      <p>Name: {{parent.name}}</p>
+      <p>Sound: {{parent.sound}}</p>
+      <button ng-click="parent.animalClick()">Animal Data</button><br>
+
+    </div>
+
+    <div ng-controller="dogCtrl as dog">
+      <p>Name: {{dog.child.name}}</p>
+      <p>Sound: {{dog.child.sound}}</p>
+      <button ng-click="dog.child.dogData()">More Dog Data</button><br>
+
+      <input ng-model="dog.child.bark" /><br><br>
+      <span>New Bark: {{dog.child.bark}}</span>
+
+    </div>
+
+
+</body>
+</html>

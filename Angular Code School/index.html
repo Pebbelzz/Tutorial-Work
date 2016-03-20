@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="store">
+  <head>
+    <link rel="stylesheet" type="text/css" href="css\bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css\custom.css" />
+    <script type="text/javascript" src="js\jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="js\bootstrap.js"></script>
+    <script type="text/javascript" src="js\angular.min.js"></script>
+    <script type="text/javascript" src="js\app.js"></script>
+  </head>
+  <body ng-controller="StoreController as store">
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="product in store.products">
+        <h3>
+          <product-title></product-title>
+      </h3>
+        <section ng-controller="PanelController as panel">
+          <ul class="nav nav-pills">
+            <li ng-class="{ active: panel.isSelected(1)}">
+              <a href ng-click="panel.selectTab(1)">Description</a>
+            </li>
+            <li ng-class="{ active: panel.isSelected(2)}">
+              <a href ng-click="panel.selectTab(2)">Specifications</a>
+            </li>
+            <li ng-class="{ active: panel.isSelected(3)}">
+              <a href ng-click="panel.selectTab(3)">Reviews</a>
+            </li>
+          </ul>
+
+          <div class="panel" ng-show="panel.isSelected(1)">
+            <h4>Description</h4>
+            <p>{{product.description}}</p>
+          </div>
+          <div class="panel" ng-show="panel.isSelected(2)">
+            <h4>Specifications</h4>
+            <blockquote>None yet</blockquote>
+          </div>
+          <div class="panel" ng-show="panel.isSelected(3)">
+            <h4>Reviews</h4>
+            <blockquote ng-repeat="review in product.reviews">
+              <b>Stars: {{review.stars}}</b>
+              {{review.body}}<br>
+              <cite>by: {{review.author}}</cite>
+            </blockquote>
+
+            <form name="reviewForm" ng-controller="ReviewController as reviewCtrl"
+                                    ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)"
+                                    novalidate>
+              <blockquote>
+                <b>Stars: {{reviewCtrl.review.stars}}</b>
+                {{reviewCtrl.review.body}}<br>
+                <cite>by: {{reviewCtrl.review.author}}</cite>
+              </blockquote>
+              <p>
+                <select ng-model="reviewCtrl.review.stars" required>
+                  <option value="1">1 Star</option>
+                  <option value="2">2 Star</option>
+                  <option value="3">3 Star</option>
+                  <option value="4">4 Star</option>
+                  <option value="5">5 Star</option>
+                </select>
+              </p>
+              <p>
+                <textarea ng-model="reviewCtrl.review.body" required></textarea>
+              </p>
+              <label>by:</lable>
+              <input ng-model="reviewCtrl.review.author" type="email" / required>
+              <div> reviewForm is {{reviewForm.$valid}}</div>
+              <input type="submit" value="Submit" />
+            </form>
+          </div>
+        </section>
+      </li>
+    <ul>
+</body>
+</html>

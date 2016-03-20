@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="app8">
+  <head>
+    <link rel="stylesheet" type="text/css" href="css\bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css\custom.css" />
+    <script type="text/javascript" src="js\jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="js\bootstrap.js"></script>
+    <script type="text/javascript" src="js\angular.min.js"></script>
+    <script type="text/javascript" src="js\exam8.js"></script>
+    <script type="text/javascript" src="js\filters.js"></script>
+  </head>
+  <style>
+    table{
+      width: 400px;
+      text-align: left;
+      border: 2px solid black;
+      padding 10px;
+    }
+    input.ng-dirty.ng-invalid{
+      border.color: red;
+    }
+  </style>
+  <body>
+    <div ng-controller="mainCtrl">
+      <label>Make Uppercase : </label>
+      <input type="text" ng-model="name">
+      <p>Uppercase : {{name | uppercase}}</p>
+      <p>Lowercase : {{name | lowercase}}</p>
+
+      <label>Currency Filter : </label>
+      <input type="text" ng-model="money">
+      <p>Currency : {{money | currency}}</p>
+
+      <ul>
+        <li ng-repeat="student in student.gpas | filter:
+        studentName |orderBy:'gpa'">
+          {{'Name: ' + student.name + ' : GPA: ' + student.gpa}}
+        </li>
+      </ul>
+
+      <!-- reverse the order -->
+      <ul>
+        <li ng-repeat="student in student.gpas | filter:
+        studentName |orderBy:'-gpa'">
+          {{'Name: ' + student.name + ' : GPA: ' + student.gpa}}
+        </li>
+      </ul>
+
+      <!-- Number Filter -->
+      <label>Number Filter: </label>
+      <input type="text" ng-model="numVal">
+      <p>Default : {{numVal | number}}</p>
+      <p>No Fraction : {{numVal | number:0}}</p>
+      <p>Negative 4 Decimal Max : {{-numVal | number:4}}</p>
+
+      <!-- Date Filter -->
+
+      <p>Date 1: {{currDate | date: 'medium'}}</p>
+      <p>Date 2: {{currDate | date: 'MM/dd/yyy "at" h:mma'}}</p>
+
+      <!-- Limit 2 -->
+      <p>Default : {{randomStr}}</p>
+      <p>10: Characters : {{randomStr | limitTo: 10}}</p>
+      <p>
+        <ul>
+          <li ng-repeat="item in randArray | limitTo:3">
+            {{item}}
+          </li>
+        </ul>
+      </p>
+
+      <!--Custom Filter using filter.js -->
+      <p>
+        <ul>
+          <li ng-repeat="item in weather">
+            {{item.day + " : "}} {{item.rain | raining}}
+          </li>
+        </ul>
+      </p>
+    </div>
+
+</body>
+</html>
