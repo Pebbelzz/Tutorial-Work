@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="app9">
+  <head>
+    <link rel="stylesheet" type="text/css" href="css\bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css\custom.css" />
+    <script type="text/javascript" src="js\jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="js\bootstrap.js"></script>
+    <script type="text/javascript" src="js\angular.min.js"></script>
+    <script type="text/javascript" src="js\exam9.js"></script>
+
+  </head>
+  <style>
+    table{
+      width: 400px;
+      text-align: left;
+      border: 2px solid black;
+      padding 10px;
+    }
+    input.ng-dirty.ng-invalid{
+      border.color: red;
+    }
+    .thick{
+      font-weight: bold;
+    }
+  </style>
+  <body>
+    <div ng-controller="mainCtrl">
+      <ul jql-directive>
+        <li id="barry">Barry Bonds</li>
+       <ul>
+         <li>AVG : .298
+         <li>HR : 762
+         <li>OBP : .444
+       </ul>
+       <li id="hank">Hank Aaron</li>
+       <ul>
+         <li>AVG : .305
+         <li>HR : 755
+         <li>OBP : .374
+       </ul>
+       <li>Babe Ruth</li>
+       <ul>
+         <li>AVG : .342
+         <li>HR : 714
+         <li>OBP : .474
+       </ul>
+     </ul>
+     <h4>Children in List</h4>
+     <span id="childrenList"></span><br><br>
+     Barry's Nubmer: <span id="barrysNumber"></span><br><br>
+     Is Hank Bold: <span id="hankBold"></span><br><br>
+     Barry's ID: <span id="barryID"></span><br><br>
+     <button ng-click="unBold()">Toggle Bold</button>
+   </div>
+
+</body>
+</html>
